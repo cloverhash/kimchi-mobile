@@ -1,0 +1,14 @@
+Kimchi Mobile
+Copyright 2024 Kimchi Mobile Contributors
+
+This product includes software developed by O(1) Labs:
+  - Kimchi (https://github.com/o1-labs/proof-systems)
+  - mina-curves
+  - mina-poseidon
+  - poly-commitment
+  Licensed under the Apache License, Version 2.0
+
+This product includes software developed by the Arkworks contributors:
+  - ark-ff, ark-ec, ark-poly, ark-serialize, ark-std
+  (https://github.com/arkworks-rs)
+  Licensed under the Apache License, Version 2.0 OR MIT License

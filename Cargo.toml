@@ -1,0 +1,47 @@
+[workspace]
+resolver = "2"
+members = [
+    "kimchi-prover",
+    "kimchi-ffi",
+    "kimchi-wasm",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "Apache-2.0"
+repository = "https://github.com/user/kimchi-mobile"
+
+[workspace.dependencies]
+# Kimchi and proof-systems dependencies
+kimchi = { git = "https://github.com/o1-labs/proof-systems", branch = "master" }
+poly-commitment = { git = "https://github.com/o1-labs/proof-systems", branch = "master" }
+mina-curves = { git = "https://github.com/o1-labs/proof-systems", branch = "master" }
+mina-poseidon = { git = "https://github.com/o1-labs/proof-systems", branch = "master" }
+groupmap = { git = "https://github.com/o1-labs/proof-systems", branch = "master" }
+o1-utils = { git = "https://github.com/o1-labs/proof-systems", branch = "master" }
+
+# Arkworks (must match proof-systems version)
+ark-ff = { version = "0.5", default-features = false }
+ark-ec = { version = "0.5", default-features = false }
+ark-poly = { version = "0.5", default-features = false }
+ark-serialize = { version = "0.5", default-features = false }
+ark-std = { version = "0.5", default-features = false }
+
+# FFI
+uniffi = "0.28"
+
+# Utilities
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+thiserror = "1.0"
+anyhow = "1.0"
+rand = "0.8"
+log = "0.4"
+hex = "0.4"
+sha2 = "0.10"
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+codegen-units = 1

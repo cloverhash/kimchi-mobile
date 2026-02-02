@@ -1,0 +1,52 @@
+[package]
+name = "kimchi-prover"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Kimchi proof generation library for mobile platforms"
+
+[features]
+default = []
+wasm = ["kimchi/wasm_types"]
+
+[dependencies]
+# Proof systems
+kimchi.workspace = true
+poly-commitment.workspace = true
+mina-curves.workspace = true
+mina-poseidon.workspace = true
+groupmap.workspace = true
+o1-utils.workspace = true
+
+# Arkworks
+ark-ff.workspace = true
+ark-ec.workspace = true
+ark-poly.workspace = true
+ark-serialize.workspace = true
+ark-std.workspace = true
+
+# Utilities
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+anyhow.workspace = true
+rand.workspace = true
+log.workspace = true
+hex.workspace = true
+
+# Big integers for RSA
+num-bigint = "0.4"
+
+# Date handling
+chrono = "0.4"
+
+# Cryptographic hashing
+sha2.workspace = true
+
+[dev-dependencies]
+criterion = "0.5"
+
+# Uncomment when benchmark file is created
+# [[bench]]
+# name = "prover_bench"
+# harness = false
