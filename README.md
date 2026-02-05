@@ -106,14 +106,80 @@ kimchi-mobile/
 ├── kimchi-wasm/            # WebAssembly verifier
 │   └── src/lib.rs          # WASM exports for browser/Node.js
 │
-├── kotlin/                 # Android Kotlin wrapper
-├── swift/                  # iOS Swift wrapper
+├── packages/
+│   ├── kotlin/             # Android Kotlin wrapper (Maven)
+│   ├── swift/              # iOS Swift wrapper (SPM)
+│   └── expo/               # Expo/React Native module (npm)
+│
+├── examples/
+│   ├── android-app/        # Native Android example
+│   ├── ios-app/            # Native iOS example
+│   └── expo-app/           # Expo/React Native example
 │
 └── scripts/
     ├── setup.sh            # Development setup
     ├── build-android.sh    # Android build script
     ├── build-ios.sh        # iOS build script
-    └── build-wasm.sh       # WebAssembly build script
+    ├── build-wasm.sh       # WebAssembly build script
+    └── build-expo.sh       # Expo package build script
+```
+
+## Installation
+
+These packages are not yet published to package registries. Install directly from the repository.
+
+### Native Android (Kotlin)
+
+```kotlin
+// build.gradle.kts
+dependencies {
+    // From local path
+    implementation(files("path/to/kimchi-mobile/packages/kotlin/build/outputs/aar/kimchi-mobile-release.aar"))
+}
+```
+
+Build the AAR first:
+```bash
+cd kimchi-mobile
+./scripts/build-android.sh
+cd packages/kotlin && ./gradlew assembleRelease
+```
+
+### Native iOS (Swift)
+
+```swift
+// Package.swift - use local path or git URL
+dependencies: [
+    .package(path: "path/to/kimchi-mobile/packages/swift")
+    // Or from git:
+    // .package(url: "https://github.com/user/kimchi-mobile", branch: "main")
+]
+```
+
+Build the XCFramework first:
+```bash
+cd kimchi-mobile
+./scripts/build-ios.sh
+```
+
+### Expo / React Native
+
+```bash
+# Install from local path
+npm install path/to/kimchi-mobile/packages/expo
+
+# Or from git
+npm install github:user/kimchi-mobile#main --subdir=packages/expo
+
+npx expo prebuild  # Required - cannot run in Expo Go
+```
+
+```typescript
+import { initialize, proveThreshold, verifyProof } from '@kimchi/expo';
+
+await initialize(14);
+const proof = await proveThreshold(50n, 100n);
+const valid = await verifyProof(proof.proofHandle);
 ```
 
 ## Building
@@ -150,10 +216,10 @@ export ANDROID_NDK_HOME=$HOME/Library/Android/sdk/ndk/<version>
 ```
 
 This produces:
-- `kotlin/src/main/jniLibs/arm64-v8a/libkimchi_ffi.so`
-- `kotlin/src/main/jniLibs/armeabi-v7a/libkimchi_ffi.so`
-- `kotlin/src/main/jniLibs/x86_64/libkimchi_ffi.so`
-- Kotlin bindings in `kotlin/src/main/kotlin/uniffi/kimchi_ffi/`
+- `packages/kotlin/src/main/jniLibs/arm64-v8a/libkimchi_ffi.so`
+- `packages/kotlin/src/main/jniLibs/armeabi-v7a/libkimchi_ffi.so`
+- `packages/kotlin/src/main/jniLibs/x86_64/libkimchi_ffi.so`
+- Kotlin bindings in `packages/kotlin/src/main/kotlin/uniffi/kimchi_ffi/`
 
 ### Build for iOS
 

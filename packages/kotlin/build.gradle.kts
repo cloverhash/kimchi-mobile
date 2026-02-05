@@ -60,19 +60,19 @@ dependencies {
 
 // Task to build native library
 tasks.register<Exec>("buildNativeLibrary") {
-    workingDir = file("../")
+    workingDir = file("../../")
     commandLine("./scripts/build-android.sh")
 }
 
 // Task to generate UniFFI bindings
 tasks.register<Exec>("generateBindings") {
     dependsOn("buildNativeLibrary")
-    workingDir = file("../")
+    workingDir = file("../../")
     commandLine(
         "cargo", "run", "-p", "uniffi-bindgen",
         "generate", "kimchi-ffi/src/kimchi_ffi.udl",
         "--language", "kotlin",
-        "--out-dir", "kotlin/src/main/kotlin"
+        "--out-dir", "packages/kotlin/src/main/kotlin"
     )
 }
 

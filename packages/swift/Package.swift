@@ -21,7 +21,7 @@ let package = Package(
         ),
         .binaryTarget(
             name: "KimchiFfi",
-            path: "../ios-output/KimchiFfi.xcframework"
+            path: "../../ios-output/KimchiFfi.xcframework"
         ),
     ]
 )

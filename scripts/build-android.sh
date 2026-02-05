@@ -5,7 +5,7 @@ set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
-OUTPUT_DIR="$PROJECT_DIR/kotlin/src/main/jniLibs"
+OUTPUT_DIR="$PROJECT_DIR/packages/kotlin/src/main/jniLibs"
 
 # Android NDK must be installed
 if [ -z "$ANDROID_NDK_HOME" ]; then
@@ -56,7 +56,7 @@ cargo run -p kimchi-ffi --features uniffi/cli -- \
     generate \
     --library target/release/libkimchi_ffi.dylib \
     --language kotlin \
-    --out-dir "$PROJECT_DIR/kotlin/src/main/kotlin"
+    --out-dir "$PROJECT_DIR/packages/kotlin/src/main/kotlin"
 
 echo ""
 echo "Build complete! Libraries are in:"
@@ -65,4 +65,4 @@ echo "  $OUTPUT_DIR/armeabi-v7a/libkimchi_ffi.so"
 echo "  $OUTPUT_DIR/x86_64/libkimchi_ffi.so"
 echo ""
 echo "Kotlin bindings are in:"
-echo "  $PROJECT_DIR/kotlin/src/main/kotlin/uniffi/kimchi_ffi/"
+echo "  $PROJECT_DIR/packages/kotlin/src/main/kotlin/uniffi/kimchi_ffi/"

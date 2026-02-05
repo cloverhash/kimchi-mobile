@@ -1,0 +1,49 @@
+{
+  "name": "@kimchi/expo",
+  "version": "1.0.0",
+  "description": "Expo module for Kimchi zero-knowledge proof generation",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "scripts": {
+    "build": "expo-module build",
+    "clean": "expo-module clean",
+    "lint": "expo-module lint",
+    "test": "expo-module test",
+    "prepare": "expo-module prepare",
+    "prepublishOnly": "expo-module prepublishOnly",
+    "expo-module": "expo-module"
+  },
+  "keywords": [
+    "react-native",
+    "expo",
+    "kimchi",
+    "zero-knowledge",
+    "zk-proof",
+    "cryptography"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/user/kimchi-mobile.git",
+    "directory": "packages/expo"
+  },
+  "author": "",
+  "license": "MIT",
+  "homepage": "https://github.com/user/kimchi-mobile#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "expo-module-scripts": "^3.0.0",
+    "expo-modules-core": "^1.5.0"
+  },
+  "peerDependencies": {
+    "expo": "*",
+    "react": "*",
+    "react-native": "*"
+  },
+  "files": [
+    "build",
+    "android",
+    "ios",
+    "src",
+    "expo-module.config.json"
+  ]
+}
